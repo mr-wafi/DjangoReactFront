@@ -1,17 +1,111 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import HomeComponent from "./pages/HomeComponent";
+import CompanyComponent from "./pages/CompanyComponent";
+import LogoutComponent from "./pages/LogoutComponent";
+import { PrivateRouteNew } from "./utils/PrivateRouteNew";
+import Config from "./utils/Config";
+import CompanyDetailsComponent from "./pages/CompanyDetailsComponent";
+import CompanyAddBankComponent from "./pages/CompanyAddBankComponent";
+import CompanyEditBankComponent from "./pages/CompanyEditBankComponent";
+import MedicineAddComponent from "./pages/MedicineAddComponent";
+import MedicineManageComponent from "./pages/MedicineManageComponent";
+import CompanyAccountComponent from "./pages/CompanyAccountComponent";
+import EmployeeComponent from "./pages/EmployeeComponent";
+import EmployeeDetailsComponent from "./pages/EmployeeDetailsComponent";
+// import BillGenerateComponent from "./pages/BillGenerateComponent";
+import BillGenerateComponentTest from "./pages/BillGenerateComponentTest";
+import CustomerRequestComponentTest from "./pages/CustomerRequestComponentTest";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Login}></Route>
+      <Route
+        exact
+        path={Config.logoutPageUrl}
+        component={LogoutComponent}
+      ></Route>
+      <PrivateRouteNew
+        exact
+        path="/home"
+        activepage="0"
+        page={HomeComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/company"
+        activepage="1"
+        page={CompanyComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/companydetails/:id"
+        activepage="1"
+        page={CompanyDetailsComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/addCompanyBank/:id"
+        activepage="1"
+        page={CompanyAddBankComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/editcompanybank/:company_id/:id"
+        activepage="1"
+        page={CompanyEditBankComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/addMedicine"
+        activepage="2"
+        page={MedicineAddComponent}
+      ></PrivateRouteNew>
+      <PrivateRouteNew
+        exact
+        path="/manageMedicine"
+        activepage="3"
+        page={MedicineManageComponent}
+      ></PrivateRouteNew>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      <PrivateRouteNew
+        exact
+        path="/manageCompanyAccount"
+        activepage="4"
+        page={CompanyAccountComponent}
+      ></PrivateRouteNew>
+
+      <PrivateRouteNew
+        exact
+        path="/manageEmployee"
+        activepage="5"
+        page={EmployeeComponent}
+      ></PrivateRouteNew>
+
+      <PrivateRouteNew
+        exact
+        path="/employeedetails/:id"
+        activepage="5"
+        page={EmployeeDetailsComponent}
+      ></PrivateRouteNew>
+
+      <PrivateRouteNew
+        exact
+        path="/generateBill"
+        activepage="6"
+        page={BillGenerateComponentTest}
+      ></PrivateRouteNew>
+
+      <PrivateRouteNew
+        exact
+        path="/customerRequest"
+        activepage="7"
+        page={CustomerRequestComponentTest}
+      ></PrivateRouteNew>
+    </Switch>
+  </Router>,
+  document.getElementById("root")
+);
